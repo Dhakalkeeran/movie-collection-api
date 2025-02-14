@@ -12,7 +12,7 @@
 	<artifactId>movie-info</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>movie-info</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Favorite movies info API</description>
 	<url/>
 	<licenses>
 		<license/>

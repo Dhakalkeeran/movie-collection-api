@@ -29,31 +29,53 @@ public class ApiController {
 
     MovieInfoService movieInfoService = new MovieInfoService();
 
+    final String OMDB_API_KEY = System.getenv("OMDB_API_KEY");
+    String url = "https://www.omdbapi.com/?apikey=" + OMDB_API_KEY + "&";
+    RestTemplate restTemplate = new RestTemplate();
+
+    private HashMap<String, String> hitOMDBApi(String id, String title) {
+        HashMap<String, String> responseHashMap = new HashMap<>();
+        if (id != null) {
+            @SuppressWarnings("unchecked")
+            HashMap<String, String> response = restTemplate.getForObject(url+"i="+id, HashMap.class);
+            responseHashMap = response;
+        }
+        else {
+            @SuppressWarnings("unchecked")
+            HashMap<String, String> response = restTemplate.getForObject(url+"t="+title, HashMap.class);
+            responseHashMap = response;
+        }
+        return responseHashMap;
+    }
+
     @GetMapping(value = {"", "movies", "movies/"})
     public List<Movie> getAllMoviesInfo() {
         return movieRepo.findAll();
     }
 
-    @GetMapping(value = {"add", "add/"})
-    public String addMovieInfo(@RequestParam(required = false) String title,
-                                @RequestParam(required = false) String id) {
-
+    @GetMapping(value = {"show", "show/"})
+    public String showMovieInfo(@RequestParam(required = false) String id, 
+                                @RequestParam(required = false) String title) 
+    {
         if (id != null | title != null) {
-            
-            final String OMDB_API_KEY = System.getenv("OMDB_API_KEY");
-            String url = "https://www.omdbapi.com/?apikey=" + OMDB_API_KEY + "&";
-            RestTemplate restTemplate = new RestTemplate();
-            HashMap<String, String> movieInfo = new HashMap<>();
-
-            if (id != null) {
-                @SuppressWarnings("unchecked")
-                HashMap<String, String> response = restTemplate.getForObject(url+"i="+id, HashMap.class);
-                movieInfo = response;
+            HashMap<String, String> movieInfo = hitOMDBApi(id, title);
+            if (movieInfo.get("Title") == null) {
+                return "Movie entry not found. Please try again.";
             }
-            else {
-                @SuppressWarnings("unchecked")
-                HashMap<String, String> response = restTemplate.getForObject(url+"t="+title, HashMap.class);
-                movieInfo = response;
+            
+            return movieInfo.get("Title") + ", " + movieInfo.get("Year") + ", Directed by " + movieInfo.get("Director") + ", Actors: " + movieInfo.get("Actors");
+        }
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid request data");
+    }
+
+    @GetMapping(value = {"add", "add/"})
+    public String addMovieInfo(@RequestParam(required = false) String id,
+                                @RequestParam(required = false) String title) 
+    {
+        if (id != null | title != null) {
+            HashMap<String, String> movieInfo = hitOMDBApi(id, title);
+            if (movieInfo.get("Title") == null) {
+                return "Movie entry not found. Please try again.";
             }
             
             Movie movie = movieInfoService.createMovieObject(movieInfo);
@@ -67,7 +89,6 @@ public class ApiController {
 
     @GetMapping(value = {"find", "find/"})
     public List<Movie> getMovieInfo(@RequestParam Map<String, String> params){
-
         String id = params.get("id");
         String title = params.get("title");
         String director = params.get("director");
