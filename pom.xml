@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.heythere</groupId>
-	<artifactId>movie-info</artifactId>
+	<artifactId>movie-collection-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>movie-info</name>
-	<description>Favorite movies info API</description>
+	<name>movie-collection-api</name>
+	<description>Favorite movies collection API</description>
 	<url/>
 	<licenses>
 		<license/>

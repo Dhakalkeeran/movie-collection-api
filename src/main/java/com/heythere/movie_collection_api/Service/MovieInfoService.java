@@ -1,11 +1,11 @@
-package com.heythere.movie_info.Service;
+package com.heythere.movie_collection_api.Service;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
 
-import com.heythere.movie_info.Models.Movie;
-import com.heythere.movie_info.Repo.MovieRepo;
+import com.heythere.movie_collection_api.Models.Movie;
+import com.heythere.movie_collection_api.Repo.MovieRepo;
 
 public class MovieInfoService {
 

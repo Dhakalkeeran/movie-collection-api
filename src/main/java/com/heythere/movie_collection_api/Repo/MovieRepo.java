@@ -1,11 +1,11 @@
-package com.heythere.movie_info.Repo;
+package com.heythere.movie_collection_api.Repo;
 
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.heythere.movie_info.Models.Movie;
+import com.heythere.movie_collection_api.Models.Movie;
 
 public interface MovieRepo extends JpaRepository<Movie, String> {
 

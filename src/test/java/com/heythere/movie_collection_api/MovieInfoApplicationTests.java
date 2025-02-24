@@ -1,4 +1,4 @@
-package com.heythere.movie_info;
+package com.heythere.movie_collection_api;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

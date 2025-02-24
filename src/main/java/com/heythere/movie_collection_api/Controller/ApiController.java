@@ -1,4 +1,4 @@
-package com.heythere.movie_info.Controller;
+package com.heythere.movie_collection_api.Controller;
 
 import java.util.HashMap;
 import java.util.List;
@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.heythere.movie_info.Models.Movie;
-import com.heythere.movie_info.Repo.MovieRepo;
-import com.heythere.movie_info.Service.MovieInfoService;
+import com.heythere.movie_collection_api.Models.Movie;
+import com.heythere.movie_collection_api.Repo.MovieRepo;
+import com.heythere.movie_collection_api.Service.MovieInfoService;
 
 @RestController
 @RequestMapping(value = "/")

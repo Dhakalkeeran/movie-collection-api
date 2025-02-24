@@ -1,4 +1,4 @@
-# FAVORITE-MOVIES-INFO API
+# FAVORITE-MOVIES-COLLECTION API
 
 This API uses the movie title or IMDB id of the movie and saves all the information related to the movie in the database. This can be used as a watchlist of the favorite movies. One can see all the movies already added in the database, add a movie to the database and delete a movie from the database.
 
@@ -23,6 +23,8 @@ This API uses the movie title or IMDB id of the movie and saves all the informat
 - MYSQL_SERVER_USERNAME
 - MYSQL_SERVER_PASSWORD
 - DATABASE_URL
+
+Note: You need to get an API key from omdbapi.com
 ```
 
 **Commands to run**
@@ -41,7 +43,7 @@ java -jar target/*.jar
 - MYSQL_SERVER_PASSWORD
 - DATABASE_URL
 
-e.g. OMDB_API_KEY="<api-key>"
+e.g. OMDB_API_KEY="<api-key>" (Note: You need to get an API key from omdbapi.com)
 ```
 
 **Commands to run**

@@ -1,4 +1,4 @@
-package com.heythere.movie_info.Models;
+package com.heythere.movie_collection_api.Models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
